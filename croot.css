@@ -17,16 +17,16 @@ body {
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
+  gap: 0; /* Menghapus jarak antar-kotak */
   width: 100%;
-  padding: 10px;
+  height: 100vh; /* Pastikan kontainer memenuhi tinggi layar */
 }
 
 .tile {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  border: 1px solid #1e1e1e; /* Garis antar-kotak untuk pemisahan visual */
   text-align: center;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
