@@ -17,16 +17,16 @@ body {
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 0; /* Menghapus jarak antar-kotak */
+  grid-auto-rows: 1fr; /* Pastikan tinggi setiap baris proporsional */
+  gap: 5px; /* Tambahkan sedikit jarak antar-kotak */
   width: 100%;
-  height: 100vh; /* Pastikan kontainer memenuhi tinggi layar */
+  height: 100vh; /* Kontainer memenuhi tinggi layar */
 }
 
 .tile {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #1e1e1e; /* Garis antar-kotak untuk pemisahan visual */
   text-align: center;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -57,14 +57,15 @@ body {
 /* Ukuran kotak */
 .tile-large {
   grid-column: span 2;
-  grid-row: span 2;
+  grid-row: span 2; /* Kotak besar memenuhi dua baris */
 }
 
 .tile-medium {
   grid-column: span 2;
+  grid-row: span 1; /* Kotak sedang satu baris */
 }
 
 .tile-small {
   grid-column: span 1;
-  grid-row: span 1;
+  grid-row: span 1; /* Kotak kecil satu baris */
 }
