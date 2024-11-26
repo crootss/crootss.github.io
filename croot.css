@@ -16,10 +16,9 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-auto-rows: 150px; /* Tinggi default setiap kotak */
-  grid-auto-flow: dense; /* Isi celah secara otomatis */
-  gap: 5px; /* Jarak antar-kotak */
+  grid-template-columns: repeat(2, 1fr); /* Selalu 2 kolom */
+  grid-auto-rows: 150px; /* Tinggi setiap baris */
+  gap: 5px; /* Jarak antar kotak */
   width: 100%;
   height: 100vh; /* Pastikan kontainer memenuhi tinggi layar */
 }
@@ -58,16 +57,16 @@ body {
 
 /* Ukuran kotak */
 .tile-large {
-  grid-column: span 2;
-  grid-row: span 2; /* Kotak besar memenuhi dua baris */
+  grid-column: span 2; /* Kotak besar memenuhi 2 kolom */
+  grid-row: span 2;   /* Kotak besar memenuhi 2 baris */
 }
 
 .tile-medium {
-  grid-column: span 2;
-  grid-row: span 1; /* Kotak sedang satu baris */
+  grid-column: span 1; /* Kotak sedang 1 kolom */
+  grid-row: span 2;   /* Kotak sedang 2 baris */
 }
 
 .tile-small {
-  grid-column: span 1;
-  grid-row: span 1; /* Kotak kecil satu baris */
+  grid-column: span 1; /* Kotak kecil 1 kolom */
+  grid-row: span 1;   /* Kotak kecil 1 baris */
 }
