@@ -16,29 +16,32 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 10px;
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
+  padding: 10px;
 }
 
 .tile {
-  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
   text-align: center;
-  padding: 20px;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tile:hover {
   transform: scale(1.05);
-  background-color: #444;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .tile a {
   text-decoration: none;
   color: #fff;
   display: block;
+  padding: 10px;
 }
 
 .tile h3 {
@@ -49,4 +52,19 @@ body {
 .tile p {
   font-size: 0.9em;
   line-height: 1.4;
+}
+
+/* Ukuran kotak */
+.tile-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.tile-medium {
+  grid-column: span 2;
+}
+
+.tile-small {
+  grid-column: span 1;
+  grid-row: span 1;
 }
