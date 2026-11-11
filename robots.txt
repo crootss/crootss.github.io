@@ -3,3 +3,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://crootss.if.co.id/sitemap.xml
+Sitemap: https://crootss.if.co.id/docs/sitemap.xml

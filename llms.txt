@@ -35,6 +35,13 @@ Hal penting:
 
 ## Dokumentasi
 
+- [Pengantar dan mulai cepat](https://crootss.if.co.id/docs/): cara kerja kamera, contoh HTML lengkap
+- [Markup dan atribut](https://crootss.if.co.id/docs/markup/): struktur, `data-croot-*`, urutan langkah, node bersarang, posisi lewat CSS
+- [Navigasi](https://crootss.if.co.id/docs/navigasi/): keyboard, klik, swipe, overview, URL, kamera 3D, aksesibilitas
+- [API JavaScript](https://crootss.if.co.id/docs/api/): `croot()`, opsi, method, properti, event, contoh HUD
+- [Kustomisasi CSS](https://crootss.if.co.id/docs/css/): variabel `--croot-*`, class status, tips 3D
+- [Tema](https://crootss.if.co.id/docs/tema/): poster, gelap, minimal; class dan token `--th-*`; membuat tema
+- [Menjalankan di komputer](https://crootss.if.co.id/docs/lokal/): server lokal Windows (PowerShell), macOS, Linux
 - [README library crootss](https://raw.githubusercontent.com/crootss/crootss/main/README.md): instalasi, atribut, navigasi, API, kustomisasi CSS, menjalankan di Windows/macOS/Linux
 - [README tema crootss](https://raw.githubusercontent.com/crootss/themes/main/README.md): tema poster, gelap, minimal; daftar class (`slide`, `t-1`…`t-8`, `cover`, `split`, `center`, `cols`, `panel`, `card`, `window`, …); membuat tema baru
 - [Contoh deck lengkap (HTML halaman ini)](https://raw.githubusercontent.com/crootss/crootss.github.io/main/index.html): presentasi nyata dengan node bersarang, tema, dan HUD
@@ -48,4 +55,5 @@ Hal penting:
 ## Opsional
 
 - [Konvensi CrootJS](https://croot.js.org/docs/conventions): aturan gaya kode yang diikuti crootss
+- [Kode sumber dokumentasi](https://github.com/crootss/docs)
 - [Lisensi GPL-3.0](https://github.com/crootss/crootss/blob/main/LICENSE)
