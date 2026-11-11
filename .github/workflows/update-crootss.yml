@@ -1,13 +1,14 @@
-# Perbarui versi crootss yang dipin di landing page ke rilis terbaru.
+# Perbarui versi crootss dan crootss/themes yang dipin di landing page ke rilis terbaru.
 #
 # Pemicu:
 #   - repository_dispatch "crootss-release": dikirim workflow Release di
-#     crootss/crootss tepat setelah rilis (butuh secret LANDING_DISPATCH_TOKEN di sana).
+#     crootss/crootss atau crootss/themes tepat setelah rilis (butuh secret
+#     LANDING_DISPATCH_TOKEN di repo pengirim).
 #   - jadwal harian: cadangan bila dispatch tidak terkirim.
 #   - manual: Actions → Update crootss → Run workflow.
 #
 # Kenaikan versi major (mis. v0.x → v1.x) tidak diterapkan otomatis karena
-# bisa mengubah API; workflow hanya memberi peringatan.
+# bisa mengubah API atau nama class; workflow hanya memberi peringatan.
 name: Update crootss
 
 on:
@@ -31,64 +32,68 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Bandingkan versi
+      - name: Bandingkan versi & ganti pin
         id: ver
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          latest=$(gh release view --repo crootss/crootss --json tagName -q .tagName)
-          current=$(grep -rhoE 'crootss/crootss@v[0-9]+\.[0-9]+\.[0-9]+' main.js | head -n1 | sed 's/.*@//')
-          echo "Terpasang: $current, rilis terbaru: $latest"
+          changed=""
+          for repo in crootss/crootss crootss/themes; do
+            latest=$(gh release view --repo "$repo" --json tagName -q .tagName)
+            current=$(grep -rhoE --include='*.html' --include='*.js' --include='*.css' \
+              "$repo@v[0-9]+\.[0-9]+\.[0-9]+" . --exclude-dir=.git | head -n1 | sed 's/.*@//')
+            echo "$repo: terpasang $current, rilis terbaru $latest"
 
-          if [ -z "$latest" ] || [ -z "$current" ]; then
-            echo "::error::Versi tidak terbaca (terpasang='$current', terbaru='$latest')"
-            exit 1
-          fi
-          newest=$(printf '%s\n%s\n' "$current" "$latest" | sort -V | tail -n1)
-          if [ "$latest" = "$current" ] || [ "$newest" != "$latest" ]; then
-            echo "Sudah terbaru."
-            exit 0
-          fi
-          if [ "$(echo "$current" | cut -d. -f1)" != "$(echo "$latest" | cut -d. -f1)" ]; then
-            echo "::warning::$latest adalah versi major baru. Perbarui landing secara manual setelah dicek."
-            exit 0
-          fi
-          echo "current=$current" >> "$GITHUB_OUTPUT"
-          echo "latest=$latest" >> "$GITHUB_OUTPUT"
+            if [ -z "$latest" ] || [ -z "$current" ]; then
+              echo "::error::Versi $repo tidak terbaca (terpasang='$current', terbaru='$latest')"
+              exit 1
+            fi
+            newest=$(printf '%s\n%s\n' "$current" "$latest" | sort -V | tail -n1)
+            if [ "$latest" = "$current" ] || [ "$newest" != "$latest" ]; then
+              echo "  sudah terbaru"
+              continue
+            fi
+            if [ "$(echo "$current" | cut -d. -f1)" != "$(echo "$latest" | cut -d. -f1)" ]; then
+              echo "::warning::$repo $latest adalah versi major baru. Perbarui landing secara manual setelah dicek."
+              continue
+            fi
 
-      - name: Pastikan file tersedia di CDN
-        if: steps.ver.outputs.latest
-        env:
-          TAG: ${{ steps.ver.outputs.latest }}
-        run: |
-          for f in croot.min.js crootss.min.css; do
-            url="https://cdn.jsdelivr.net/gh/crootss/crootss@$TAG/$f"
-            for i in 1 2 3 4 5 6; do
-              code=$(curl -s -o /dev/null -w '%{http_code}' "$url")
-              [ "$code" = 200 ] && break
-              sleep 20
+            # Pastikan file sudah tersedia di CDN sebelum dipakai
+            case "$repo" in
+              crootss/crootss) files="croot.min.js crootss.min.css" ;;
+              crootss/themes)  files="poster.min.css gelap.min.css minimal.min.css base.css" ;;
+            esac
+            for f in $files; do
+              url="https://cdn.jsdelivr.net/gh/$repo@$latest/$f"
+              for i in 1 2 3 4 5 6; do
+                code=$(curl -s -o /dev/null -w '%{http_code}' "$url")
+                [ "$code" = 200 ] && break
+                sleep 20
+              done
+              echo "  $url → $code"
+              [ "$code" = 200 ] || { echo "::error::$url belum tersedia"; exit 1; }
             done
-            echo "$url → $code"
-            [ "$code" = 200 ] || { echo "::error::$url belum tersedia"; exit 1; }
-          done
 
-      - name: Ganti versi, commit & push
-        if: steps.ver.outputs.latest
+            targets=$(grep -rlE --include='*.html' --include='*.js' --include='*.css' \
+              "$repo@$current" . --exclude-dir=.git)
+            sed -i "s#$repo@$current#$repo@$latest#g" $targets
+            changed="$changed $repo $current → $latest;"
+          done
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+
+      - name: Commit & push
+        if: steps.ver.outputs.changed != ''
         env:
-          OLD: ${{ steps.ver.outputs.current }}
-          NEW: ${{ steps.ver.outputs.latest }}
+          CHANGED: ${{ steps.ver.outputs.changed }}
         run: |
-          files=$(grep -rlE --include='*.html' --include='*.js' --include='*.css' \
-            "crootss/crootss@$OLD" . --exclude-dir=.git)
-          sed -i "s#crootss/crootss@$OLD#crootss/crootss@$NEW#g" $files
           git diff --stat
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -am "Perbarui crootss $OLD → $NEW" -m "https://github.com/crootss/crootss/releases/tag/$NEW"
+          git commit -am "Perbarui versi:$CHANGED"
           git push
 
       - name: Minta build GitHub Pages
-        if: steps.ver.outputs.latest
+        if: steps.ver.outputs.changed != ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
