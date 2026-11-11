@@ -1,66 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CrootSS | CSS Mobile Friendly Responsive Component and Template</title>
-  <link rel="stylesheet" href="croot.css">
+  <title>crootss | Presentasi spatial 3D dengan CSS murni</title>
+  <meta name="description" content="crootss: engine presentasi spatial 3D berbasis CSS 3D transforms. Tanpa dependency, ±9 KB, ramah SEO, cukup satu tag CDN.">
+  <meta name="keywords" content="crootss, croot.js, CSS 3D, presentasi, slide, spatial, zoom, vanilla js">
+  <meta property="og:title" content="crootss: presentasi spatial 3D dengan CSS murni">
+  <meta property="og:description" content="Tulis slide di HTML, letakkan di ruang 3D, kamera mengurus sisanya.">
+  <meta property="og:image" content="https://crootss.if.co.id/crootss.jpeg">
+  <meta property="og:url" content="https://crootss.if.co.id">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://crootss.if.co.id/crootss.jpeg">
+  <link rel="icon" href="favicon.ico">
 
-    <meta name="description" content="CrootSS: CSS Mobile Friendly Responsive Component and Template." />
-    <meta name="keywords" content="CrootSS, CSS, Template, Responsive, Template, Vanilla, html, CSS lib" />
-    <meta property="og:image" content="/crootss.png" />
-  <!-- Meta Tags untuk Open Graph -->
-    <meta property="og:title" content="CrootSS: CSS Mobile Friendly Responsive Component and Template" />
-    <meta property="og:description" content="CSS Mobile Friendly Responsive Component and Template" />
-    <meta property="og:image" content="https://crootss.if.co.id/crootss.jpeg" />
-    <meta property="og:url" content="https://crootss.if.co.id" />
-    <meta property="og:type" content="website" />
-
-    <!-- Meta Tags untuk Twitter (opsional) -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="CrootSS: CSS Mobile Friendly Responsive Component and Template" />
-    <meta name="twitter:description" content="CSS Mobile Friendly Responsive Component and Template" />
-    <meta name="twitter:image" content="https://www.do.my.id/crootss.jpeg" />
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crootss/crootss@0/crootss.min.css">
+  <link rel="stylesheet" href="site.css">
 </head>
 <body>
-  <div class="container">
-    <div class="tile tile-large" style="background-color: #ff6f61;">
-      <a href="/header">
-        <h3>Header</h3>
-        <p>Menu Pilihan Paling Atas</p>
-      </a>
-    </div>
-    <div class="tile tile-small" style="background-color: #f7c948;">
-      <a href="/slider">
-        <h3>Slider</h3>
-        <p>Konten Gambar Bergerak Otomatis</p>
-      </a>
-    </div>
-    <div class="tile tile-small" style="background-color: #59c3c3;">
-      <a href="/feed">
-        <h3>Feed</h3>
-        <p>Konten Berita</p>
-      </a>
-    </div>
-    <div class="tile tile-medium" style="background-color: #6a4c93;">
-      <a href="/event">
-        <h3>Event</h3>
-        <p>Acara terdekat selanjutnya</p>
-      </a>
-    </div>
-    <div class="tile tile-small" style="background-color: #f4a261;">
-      <a href="/flipcard">
-        <h3>Flip Card</h3>
-        <p>Kotak kotak flip</p>
-      </a>
-    </div>
-    <div class="tile tile-small" style="background-color: #ffca3a;">
-      <a href="/footer">
-        <h3>Footer</h3>
-        <p>Menu Khusus Mobile Bagian Bawah</p>
-      </a>
-    </div>
+
+<main class="croot-viewport" data-croot>
+  <div class="croot-stage">
+
+    <!-- 1. Hero -->
+    <section class="croot-node hero" id="mulai" data-croot-step="1" aria-label="crootss">
+      <h1>croot<span class="accent">ss</span></h1>
+      <p class="lead">Presentasi spatial 3D dengan CSS murni.</p>
+      <p class="actions">
+        <button class="btn primary" data-croot-target="#kenapa">Mulai tur →</button>
+        <a class="btn" href="https://github.com/crootss/crootss">GitHub</a>
+      </p>
+      <p class="hint"><kbd>→</kbd> / <kbd>Spasi</kbd> lanjut · <kbd>Esc</kbd> overview · klik apa saja</p>
+    </section>
+
+    <!-- 2. Kenapa (dengan zoom bersarang) -->
+    <section class="croot-node card wide kenapa" id="kenapa" data-croot-step="2" data-croot-x="1500" data-croot-y="0">
+      <h2>Kenapa crootss?</h2>
+      <p>Klik salah satu kotak, atau tekan <kbd>→</kbd> untuk menukik ke dalamnya.</p>
+
+      <div class="croot-node mini" id="ringan" data-croot-step="2.1" data-croot-x="-330" data-croot-y="130" data-croot-scale="0.3">
+        <h2><span class="accent">±9 KB</span></h2>
+        <p>CSS + JS minified, tanpa dependency. Tidak ada Canvas, WebGL, atau WebAssembly: hanya CSS 3D transforms bawaan browser.</p>
+      </div>
+      <div class="croot-node mini" id="seo" data-croot-step="2.2" data-croot-x="0" data-croot-y="130" data-croot-scale="0.3">
+        <h2><span class="yellow">HTML biasa</span></h2>
+        <p>Konten tetap teks di DOM: bisa diindeks mesin pencari, dibaca screen reader, dan tampil sebagai dokumen saat JS mati.</p>
+      </div>
+      <div class="croot-node mini" id="tajam" data-croot-step="2.3" data-croot-x="330" data-croot-y="130" data-croot-scale="0.3">
+        <h2><span class="teal">Tetap tajam</span></h2>
+        <p>Teks di-raster ulang setelah kamera berhenti, jadi zoom sedalam apa pun tidak membuatnya buram. Seperti kotak ini.</p>
+      </div>
+    </section>
+
+    <!-- 3. Pasang -->
+    <section class="croot-node card small-code" id="pasang" data-croot-step="3" data-croot-x="3000" data-croot-y="0" data-croot-rz="90">
+      <h2>Pasang</h2>
+      <p>Dua baris dari CDN. Tanpa npm, tanpa build.</p>
+<pre><code>&lt;link rel="stylesheet" href=
+ "https://cdn.jsdelivr.net/gh/crootss/crootss@0/crootss.min.css"&gt;
+&lt;script src=
+ "https://cdn.jsdelivr.net/gh/crootss/crootss@0/croot.min.js"&gt;
+&lt;/script&gt;</code></pre>
+    </section>
+
+    <!-- 4. Markup -->
+    <section class="croot-node card" id="markup" data-croot-step="4" data-croot-x="3000" data-croot-y="1500" data-croot-z="-800" data-croot-ry="-30">
+      <h2>Tulis di HTML</h2>
+<pre><code>&lt;div class="croot-viewport" <b>data-croot</b>&gt;
+  &lt;div class="croot-stage"&gt;
+    &lt;section class="croot-node"
+      <b>data-croot-step</b>="1"
+      <b>data-croot-x</b>="1500" <b>data-croot-rz</b>="90"&gt;
+      &lt;h2&gt;Halo&lt;/h2&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <p>Itu saja. <code>croot.js</code> aktif otomatis.</p>
+    </section>
+
+    <!-- 5. Atribut -->
+    <section class="croot-node card wide tile-red" id="atribut" data-croot-step="5" data-croot-x="1500" data-croot-y="1500" data-croot-scale="1.6">
+      <h2>Atribut</h2>
+      <table>
+        <tr><td><code>data-croot-step</code></td><td>urutan: 1 → 2 → 2.1 → 2.10 → 3</td></tr>
+        <tr><td><code>data-croot-x / y / z</code></td><td>posisi (px)</td></tr>
+        <tr><td><code>data-croot-rx / ry / rz</code></td><td>rotasi (derajat)</td></tr>
+        <tr><td><code>data-croot-scale</code></td><td>skala; kamera menyesuaikan</td></tr>
+        <tr><td><code>data-croot-target</code></td><td>klik → kamera ke selector lain</td></tr>
+      </table>
+    </section>
+
+    <!-- 6. Navigasi -->
+    <section class="croot-node card" id="navigasi" data-croot-step="6" data-croot-x="0" data-croot-y="1800" data-croot-rx="-20">
+      <h2>Tiga cara bergerak</h2>
+      <ul>
+        <li><strong>Linier</strong>: <kbd>←</kbd> <kbd>→</kbd> <kbd>Spasi</kbd> <kbd>PgUp/PgDn</kbd>, atau swipe.</li>
+        <li><strong>Klik langsung</strong>: klik node mana pun; urutan ikut tersinkron.</li>
+        <li><strong>Overview</strong>: <kbd>Esc</kbd> menampilkan seluruh kanvas.</li>
+      </ul>
+      <p>Setiap node punya alamat sendiri: <code>#/navigasi</code>.</p>
+    </section>
+
+    <!-- 7. API -->
+    <section class="croot-node card" id="api" data-croot-step="7" data-croot-x="-1500" data-croot-y="1500">
+      <h2>API JavaScript</h2>
+<pre><code>const deck = croot('#deck');
+deck.next(); deck.prev();
+deck.goto('api'); deck.overview();
+
+deck.root.addEventListener('croot:enter',
+  e =&gt; console.log(e.target.id));</code></pre>
+    </section>
+
+    <!-- 8. Kustomisasi -->
+    <section class="croot-node card tile-yellow" id="gaya" data-croot-step="8" data-croot-x="-1500" data-croot-y="0" data-croot-rz="-8">
+      <h2>Atur lewat CSS</h2>
+<pre><code>.croot-viewport {
+  --croot-perspective: 1000px;
+  --croot-speed: 1s;
+  --croot-node-width: 960px;
+  --croot-dim: .35;
+}</code></pre>
+      <p><code>prefers-reduced-motion</code> dihormati otomatis.</p>
+    </section>
+
+    <!-- 9. Open source -->
+    <section class="croot-node card tile-teal" id="opensource" data-croot-step="9" data-croot-x="-1500" data-croot-y="-1400">
+      <h2>Open source</h2>
+      <p>Lisensi di repositori. Issue, ide, dan pull request sangat diterima.</p>
+      <p class="actions">
+        <a class="btn dark" href="https://github.com/crootss/crootss">github.com/crootss/crootss</a>
+      </p>
+    </section>
+
+    <!-- 10. Penutup -->
+    <section class="croot-node hero" id="selesai" data-croot-step="10" data-croot-x="0" data-croot-y="-1400" data-croot-z="300">
+      <h2>Halaman ini adalah presentasi crootss.</h2>
+      <p class="lead">Tekan <kbd>Esc</kbd> untuk melihat seluruh kanvasnya.</p>
+      <p class="actions"><button class="btn" data-croot-target="#mulai">↺ Kembali ke awal</button></p>
+    </section>
+
   </div>
+</main>
+
+<nav class="hud" aria-label="Navigasi presentasi">
+  <button class="hud-btn" data-act="prev" aria-label="Sebelumnya">←</button>
+  <button class="hud-btn" data-act="overview">Overview</button>
+  <button class="hud-btn" data-act="next" aria-label="Berikutnya">→</button>
+  <span class="hud-pos" aria-hidden="true"></span>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/gh/crootss/crootss@0/croot.min.js"></script>
+<script>
+  (function () {
+    if (typeof croot === 'undefined') return; // CDN gagal: halaman tetap tampil sebagai dokumen
+    var deck = croot('[data-croot]');
+    var pos = document.querySelector('.hud-pos');
+    function show() {
+      pos.textContent = deck.isOverview ? 'overview' : (deck.index + 1) + ' / ' + deck.steps.length;
+    }
+    document.querySelector('.hud').addEventListener('click', function (e) {
+      var act = e.target.dataset.act;
+      if (act) { deck[act](); e.target.blur(); }
+    });
+    deck.root.addEventListener('croot:enter', show);
+    deck.root.addEventListener('croot:overview', show);
+    document.body.classList.add('js');
+    show();
+  })();
+</script>
 </body>
 </html>

@@ -1,0 +1,147 @@
+:root {
+  color-scheme: dark;
+  --bg: #0d1018;
+  --fg: #e8ecf4;
+  --muted: #8b96b0;
+  --card: #1a2030;
+  --line: #2e3850;
+  --red: #ff6f61;
+  --yellow: #f7c948;
+  --teal: #59c3c3;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 50% 40%, #222a3e 0%, var(--bg) 70%) fixed, var(--bg);
+  color: var(--fg);
+  font: 32px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Tanpa JS: dokumen biasa yang nyaman dibaca */
+body:not(.js) { font-size: 18px; padding: 16px; }
+body:not(.js) .hud { display: none; }
+
+.croot-viewport { --croot-node-width: 960px; }
+/* Node dengan anak bersarang tetap lebar penuh supaya anaknya muat */
+.croot-node.kenapa { --croot-node-width: 960px; }
+.small-code pre { font-size: 19px; }
+
+@media (max-width: 640px) {
+  .croot-viewport { --croot-node-width: 600px; }
+  .croot-node.kenapa { font-size: 44px; }
+  .small-code pre { white-space: pre-wrap; word-break: break-all; }
+  .croot-node table td { display: block; border: 0; padding: 0 0 .1em; }
+  .croot-node table tr { display: block; padding: .35em 0; border-bottom: 2px solid rgba(0, 0, 0, .15); }
+  .croot-node table td:first-child { white-space: normal; }
+}
+
+h1, h2 { margin: 0 0 .4em; line-height: 1.1; }
+h1 { font-size: 3.6em; letter-spacing: -.02em; }
+h2 { font-size: 2em; }
+p, ul, table, pre { margin: 0 0 .6em; }
+ul { padding-left: 1.1em; }
+li { margin-bottom: .3em; }
+
+.accent { color: var(--red); }
+.yellow { color: var(--yellow); }
+.teal { color: var(--teal); }
+
+.croot-node.card {
+  padding: 56px 64px;
+  border-radius: 28px;
+  background: var(--card);
+  border: 2px solid var(--line);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
+}
+.croot-node.wide { min-height: 640px; }
+.croot-node.hero { text-align: center; }
+.lead { font-size: 1.25em; color: var(--fg); }
+.hint { color: var(--muted); font-size: .75em; }
+
+/* Node anak (zoom bersarang) */
+.croot-node.mini {
+  width: 900px;
+  min-height: 900px;
+  padding: 64px;
+  border-radius: 40px;
+  background: #242c42;
+  border: 3px solid var(--line);
+  font-size: 46px;
+}
+.croot-node.mini h2 { font-size: 1.8em; }
+body:not(.js) .croot-node.mini { width: auto; min-height: 0; font-size: 1em; margin: 1em 0; padding: 1em; }
+
+.tile-red { background: var(--red) !important; color: #1a1a1a; border: 0 !important; }
+.tile-yellow { background: var(--yellow) !important; color: #1a1a1a; border: 0 !important; }
+.tile-teal { background: var(--teal) !important; color: #1a1a1a; border: 0 !important; }
+.tile-red code, .tile-yellow code, .tile-teal code { color: #1a1a1a; background: rgba(0, 0, 0, .1); }
+.tile-yellow pre { background: rgba(0, 0, 0, .12); color: #1a1a1a; }
+
+code, kbd, pre { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+code { font-size: .85em; color: var(--yellow); }
+pre {
+  font-size: 24px;
+  line-height: 1.5;
+  padding: 24px 28px;
+  border-radius: 16px;
+  background: #0f131d;
+  overflow-x: auto;
+  white-space: pre;
+}
+pre code { color: inherit; font-size: 1em; }
+pre b { color: var(--red); font-weight: 600; }
+kbd {
+  font-size: .75em;
+  padding: .1em .45em;
+  border: 2px solid currentColor;
+  border-bottom-width: 4px;
+  border-radius: .35em;
+}
+
+table { border-collapse: collapse; width: 100%; font-size: .9em; }
+td { padding: .35em .5em; border-bottom: 2px solid rgba(0, 0, 0, .15); vertical-align: top; }
+td:first-child { white-space: nowrap; }
+
+.actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 1em; }
+.card .actions { justify-content: flex-start; }
+.btn {
+  font: inherit;
+  font-size: .8em;
+  padding: .45em 1.1em;
+  border-radius: 999px;
+  border: 3px solid var(--teal);
+  background: none;
+  color: var(--teal);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn.primary { background: var(--red); border-color: var(--red); color: #1a1a1a; font-weight: 600; }
+.btn.dark { border-color: #1a1a1a; color: #1a1a1a; }
+.btn:hover { filter: brightness(1.1); }
+
+.hud {
+  position: fixed;
+  left: 16px;
+  bottom: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 14px system-ui, sans-serif;
+  color: var(--muted);
+}
+.hud-btn {
+  font: inherit;
+  min-width: 44px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 2px solid var(--line);
+  background: rgba(13, 16, 24, .7);
+  color: var(--fg);
+  cursor: pointer;
+}
+.hud-btn:hover, .hud-btn:focus-visible { border-color: var(--teal); }
+.hud-pos { margin-left: 6px; }
