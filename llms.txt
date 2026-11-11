@@ -28,14 +28,17 @@ Hal penting:
 
 - `croot.js` adalah ES module dan aktif otomatis pada `[data-croot]`. Browser tidak memuat ES module dari `file://`; jalankan server lokal (`python3 -m http.server 8080`).
 - Selalu pin versi CDN (`@vX.Y.Z`), jangan `@latest`. Versi terbaru ada di halaman Releases.
-- Atribut node: `data-croot-step` (urutan, per segmen: 2 < 2.1 < 2.10 < 3), `data-croot-x/y/z` (px), `data-croot-rx/ry/rz` (derajat), `data-croot-scale`, `data-croot-target` (klik → terbang ke selector). Pada root: `data-croot-fit`, `data-croot-pullback`, `data-croot="manual"`.
+- Atribut node: `data-croot-step` (urutan, per segmen: 2 < 2.1 < 2.10 < 3), `data-croot-x/y/z` (px), `data-croot-rx/ry/rz` (derajat), `data-croot-scale`, `data-croot-target` (klik → terbang ke selector). Pada root: `data-croot-fit`, `data-croot-pullback`, `data-croot-overview`, `data-croot="manual"`.
 - Node bersarang memakai koordinat relatif ke pusat induknya. Posisi juga bisa ditulis sebagai custom property CSS (`--croot-x`, dst.).
 - API: `import { croot } from '…/croot.min.js'`; `const deck = croot('#deck')`; `deck.next()`, `deck.prev()`, `deck.goto(id|index)`, `deck.overview()`, `deck.destroy()`. Event: `croot:enter`, `croot:leave`, `croot:overview`. URL setiap node: `#/<id>`.
+- Konvensi presentasi: mulai dari **big picture**. Satu node berisi diagram seluruh presentasi (concept map, system context, rich picture, Business Model Canvas `.bmc`, alur `.flow`, timeline `.timeline`) didaftarkan dengan `data-croot-overview="#id"` pada root; tampilkan di awal, lalu zoom ke tiap blok dan detailnya. `Esc` dan langkah setelah yang terakhir kembali ke big picture. Blok satu bidang dengan big picture.
+- Diagram dan animasi dari tema, murni CSS: SVG `.dg` dengan `.dg-edge` (`dotted`/`dashed`), `.dg-box`, `.dg-label`; animasi `.a-draw` (path `pathLength="1"`), `.a-flow`, `.a-in`, `.a-float`, `.a-spin`, `.a-pulse`, `.a-blink` yang hanya berjalan di node aktif.
 - Konvensi kode: vanilla ES module tanpa build; HTML, CSS, dan JS di file terpisah (konvensi CrootJS).
 
 ## Dokumentasi
 
 - [Pengantar dan mulai cepat](https://crootss.if.co.id/docs/): cara kerja kamera, contoh HTML lengkap
+- [Big picture dan diagram](https://crootss.if.co.id/docs/big-picture/): konvensi presentasi, memilih diagram, kelas diagram dan animasi
 - [Markup dan atribut](https://crootss.if.co.id/docs/markup/): struktur, `data-croot-*`, urutan langkah, node bersarang, posisi lewat CSS
 - [Navigasi](https://crootss.if.co.id/docs/navigasi/): keyboard, klik, swipe, overview, URL, kamera 3D, aksesibilitas
 - [API JavaScript](https://crootss.if.co.id/docs/api/): `croot()`, opsi, method, properti, event, contoh HUD

@@ -86,14 +86,12 @@
 .croot-ready .peta-besar > h2 { position: absolute; left: 300px; top: 340px; margin: 0; max-width: 4000px; font-size: 300px; line-height: 1; }
 .croot-ready .peta-besar > .sub { position: absolute; left: 300px; top: 1000px; margin: 0; max-width: 3600px; font-size: 96px; line-height: 1.3; }
 .peta-garis { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.peta-jalan path { fill: none; stroke: currentColor; stroke-width: 14; stroke-linecap: round; stroke-dasharray: 1 42; opacity: .55; }
-.peta-label rect { fill: var(--th-panel); }
-.peta-label text { fill: var(--th-on-panel); font: 600 84px var(--th-text); text-anchor: middle; }
-.peta-hp .peta-label text { font-size: 56px; }
-/* Titik-titik mengalir dari pusat ke cabang saat peta utuh terlihat */
-@keyframes peta-arus { to { stroke-dashoffset: -86; } }
-.croot-overview .peta-jalan path, #peta.croot-active .peta-jalan path { animation: peta-arus 1.4s linear infinite; }
-@media (prefers-reduced-motion: reduce) { .peta-jalan path { animation: none !important; } }
+/* Garis dan label memakai komponen diagram dari crootss/themes (.dg-edge,
+   .dg-label, .a-flow); di sini hanya ukurannya, karena peta berskala besar. */
+.peta-garis { --dg-gap: 42px; }
+.peta-garis .dg-edge { stroke-width: 14; opacity: .55; }
+.peta-garis .dg-label text { font-size: 84px; }
+.peta-hp .dg-label text { font-size: 56px; }
 .croot-viewport:not(.croot-ready) .peta-garis { display: none; }
 
 @media (max-width: 640px) {
