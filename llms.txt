@@ -1,0 +1,51 @@
+# crootss
+
+> crootss adalah engine presentasi spatial 3D open source (GPL-3.0) berbasis CSS 3D transforms murni. Slide ditulis sebagai HTML biasa, diletakkan di ruang 3D lewat atribut `data-croot-*`, lalu kamera (`croot.js`) terbang di antaranya. Tanpa dependency, ±9 KB, tanpa build. Konten tetap teks di DOM, jadi terindeks mesin pencari dan tampil sebagai dokumen biasa saat JavaScript mati.
+
+Halaman https://crootss.if.co.id/ sendiri adalah presentasi crootss. Bahasa utama dokumentasi: Indonesia.
+
+## Mulai cepat
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/crootss.min.css">
+<!-- opsional: tema siap pakai (poster, gelap, atau minimal) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crootss/themes@v0.2.0/poster.min.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js"></script>
+
+<div class="croot-viewport" data-croot>
+  <div class="croot-stage">
+    <section class="croot-node" data-croot-step="1">
+      <h1>Halo</h1>
+    </section>
+    <section class="croot-node" data-croot-step="2" data-croot-x="1500" data-croot-ry="-35">
+      <h2>Slide berikutnya</h2>
+    </section>
+  </div>
+</div>
+```
+
+Hal penting:
+
+- `croot.js` adalah ES module dan aktif otomatis pada `[data-croot]`. Browser tidak memuat ES module dari `file://`; jalankan server lokal (`python3 -m http.server 8080`).
+- Selalu pin versi CDN (`@vX.Y.Z`), jangan `@latest`. Versi terbaru ada di halaman Releases.
+- Atribut node: `data-croot-step` (urutan, per segmen: 2 < 2.1 < 2.10 < 3), `data-croot-x/y/z` (px), `data-croot-rx/ry/rz` (derajat), `data-croot-scale`, `data-croot-target` (klik → terbang ke selector). Pada root: `data-croot-fit`, `data-croot-pullback`, `data-croot="manual"`.
+- Node bersarang memakai koordinat relatif ke pusat induknya. Posisi juga bisa ditulis sebagai custom property CSS (`--croot-x`, dst.).
+- API: `import { croot } from '…/croot.min.js'`; `const deck = croot('#deck')`; `deck.next()`, `deck.prev()`, `deck.goto(id|index)`, `deck.overview()`, `deck.destroy()`. Event: `croot:enter`, `croot:leave`, `croot:overview`. URL setiap node: `#/<id>`.
+- Konvensi kode: vanilla ES module tanpa build; HTML, CSS, dan JS di file terpisah (konvensi CrootJS).
+
+## Dokumentasi
+
+- [README library crootss](https://raw.githubusercontent.com/crootss/crootss/main/README.md): instalasi, atribut, navigasi, API, kustomisasi CSS, menjalankan di Windows/macOS/Linux
+- [README tema crootss](https://raw.githubusercontent.com/crootss/themes/main/README.md): tema poster, gelap, minimal; daftar class (`slide`, `t-1`…`t-8`, `cover`, `split`, `center`, `cols`, `panel`, `card`, `window`, …); membuat tema baru
+- [Contoh deck lengkap (HTML halaman ini)](https://raw.githubusercontent.com/crootss/crootss.github.io/main/index.html): presentasi nyata dengan node bersarang, tema, dan HUD
+
+## Kode sumber
+
+- [crootss/crootss](https://github.com/crootss/crootss): `crootss.css`, `croot.js`, demo, tes
+- [crootss/themes](https://github.com/crootss/themes): `base.css` dan file tema
+- [Releases library](https://github.com/crootss/crootss/releases) dan [Releases tema](https://github.com/crootss/themes/releases): versi terbaru dan snippet CDN
+
+## Opsional
+
+- [Konvensi CrootJS](https://croot.js.org/docs/conventions): aturan gaya kode yang diikuti crootss
+- [Lisensi GPL-3.0](https://github.com/crootss/crootss/blob/main/LICENSE)

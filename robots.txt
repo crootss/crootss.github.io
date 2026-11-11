@@ -1,0 +1,5 @@
+# Semua crawler, termasuk agen AI, boleh membaca seluruh situs.
+User-agent: *
+Allow: /
+
+Sitemap: https://crootss.if.co.id/sitemap.xml

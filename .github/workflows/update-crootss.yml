@@ -40,7 +40,7 @@ jobs:
           changed=""
           for repo in crootss/crootss crootss/themes; do
             latest=$(gh release view --repo "$repo" --json tagName -q .tagName)
-            current=$(grep -rhoE --include='*.html' --include='*.js' --include='*.css' \
+            current=$(grep -rhoE --include='*.html' --include='*.js' --include='*.css' --include='*.txt' \
               "$repo@v[0-9]+\.[0-9]+\.[0-9]+" . --exclude-dir=.git | head -n1 | sed 's/.*@//')
             echo "$repo: terpasang $current, rilis terbaru $latest"
 
@@ -74,7 +74,7 @@ jobs:
               [ "$code" = 200 ] || { echo "::error::$url belum tersedia"; exit 1; }
             done
 
-            targets=$(grep -rlE --include='*.html' --include='*.js' --include='*.css' \
+            targets=$(grep -rlE --include='*.html' --include='*.js' --include='*.css' --include='*.txt' \
               "$repo@$current" . --exclude-dir=.git)
             sed -i "s#$repo@$current#$repo@$latest#g" $targets
             changed="$changed $repo $current → $latest;"
