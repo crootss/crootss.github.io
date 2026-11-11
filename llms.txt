@@ -7,10 +7,10 @@ Halaman https://crootss.if.co.id/ sendiri adalah presentasi crootss. Bahasa utam
 ## Mulai cepat
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/crootss.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crootss/crootss@v0.4.0/crootss.min.css">
 <!-- opsional: tema siap pakai (poster, gelap, atau minimal) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crootss/themes@v0.3.0/poster.min.css">
-<script type="module" src="https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crootss/themes@v0.4.0/poster.min.css">
+<script type="module" src="https://cdn.jsdelivr.net/gh/crootss/crootss@v0.4.0/croot.min.js"></script>
 
 <div class="croot-viewport" data-croot>
   <div class="croot-stage">
