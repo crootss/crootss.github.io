@@ -32,6 +32,8 @@
 @media (max-width: 640px) {
   .cover .hint { left: 64px; right: 64px; bottom: 56px; }
   #kenapa { height: 1500px; }
+  /* "komputermu." satu kata panjang; di font lebar (gelap) bisa melewati tepi */
+  #jalankan h2 { font-size: calc(76px * var(--th-wide, 1)); }
   #atribut h2 { font-size: 64px; }
   .license { display: grid; align-content: center; }
   .license .mega { font-size: calc(170px * var(--th-wide, 1)); }
