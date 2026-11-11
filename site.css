@@ -12,14 +12,12 @@
 #seo    { --croot-x: 0;    --croot-y: 180; --croot-scale: .28; }
 #tajam  { --croot-x: 410;  --croot-y: 180; --croot-scale: .28; }
 
-/* ---------- Buka di komputermu: jendela per OS ---------- */
-.croot-node.os-win { height: 1600px; }
+/* ---------- Buka di komputermu: PowerShell atau Python ---------- */
 .window h3 small { font: 400 30px var(--th-text); letter-spacing: 0; margin-left: 12px; opacity: .7; }
 .window .btn { font-size: 26px; padding: 16px 28px; }
 #jalankan .sub { max-width: 40ch; }
-#windows { --croot-x: -365; --croot-y: 164; --croot-scale: .33; }
-#macos   { --croot-x: 84;   --croot-y: 12;  --croot-scale: .31; }
-#linux   { --croot-x: 84;   --croot-y: 265; --croot-scale: .31; }
+#powershell { --croot-x: -255; --croot-y: 250; --croot-scale: .38; }
+#python     { --croot-x: 255;  --croot-y: 250; --croot-scale: .38; }
 
 /* ---------- Tema ---------- */
 #tema-slide .actions { gap: 14px; }
@@ -41,10 +39,42 @@
   #ringan { --croot-x: 0; --croot-y: -40; --croot-scale: .36; }
   #seo    { --croot-x: 0; --croot-y: 239; --croot-scale: .36; }
   #tajam  { --croot-x: 0; --croot-y: 518; --croot-scale: .36; }
-  #windows { --croot-x: 0; --croot-y: -54; --croot-scale: .37; }
-  #macos   { --croot-x: 0; --croot-y: 399; --croot-scale: .37; }
-  #linux   { --croot-x: 0; --croot-y: 689; --croot-scale: .37; }
+  #powershell { --croot-x: 0; --croot-y: -30; --croot-scale: .46; }
+  #python     { --croot-x: 0; --croot-y: 340; --croot-scale: .46; }
 }
 
 .croot-viewport:not(.croot-ready) .cover .hint { position: static; margin-top: 1em; }
 .hud-btn { white-space: nowrap; }
+
+/* ---------- Ilustrasi sampul: kamera terbang di antara slide ----------
+   SVG di index.html, gerak di sini. Warna dari currentColor supaya cocok di
+   semua tema. Hanya bergerak saat sampul aktif. */
+.peta { position: absolute; right: 70px; bottom: 64px; width: 380px; overflow: visible; }
+.peta-jalur { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-dasharray: 3 9; stroke-linecap: round; opacity: .55; }
+.peta-slide polygon { fill: currentColor; fill-opacity: .1; stroke: currentColor; stroke-width: 2.5; stroke-linejoin: round; }
+.peta-slide line { stroke: currentColor; stroke-width: 4; stroke-linecap: round; opacity: .5; }
+.peta-kamera {
+  fill: currentColor;
+  offset-path: path("M65 173 C90 100 140 70 200 74 C260 78 300 120 295 163 C290 215 120 225 65 173 Z");
+  offset-rotate: 0deg;
+}
+
+@keyframes peta-alir { to { stroke-dashoffset: -48; } }
+@keyframes peta-terbang { to { offset-distance: 100%; } }
+/* Slide menyala saat kamera tiba, lalu meredup lagi */
+@keyframes peta-nyala { 0%, 14% { fill-opacity: .55; } 26%, 100% { fill-opacity: .1; } }
+
+.croot-active .peta-jalur { animation: peta-alir 1.6s linear infinite; }
+.croot-active .peta-kamera { animation: peta-terbang 9s cubic-bezier(.65, 0, .35, 1) infinite; }
+.croot-active .peta-slide polygon { animation: peta-nyala 9s linear infinite; }
+/* Kamera tiba di slide 2 sekitar 30% dan slide 3 sekitar 55% putaran */
+.croot-active .s2 polygon { animation-delay: -6.3s; }
+.croot-active .s3 polygon { animation-delay: -4.05s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .croot-active .peta * { animation: none; }
+}
+.croot-viewport:not(.croot-ready) .peta { display: none; }
+@media (max-width: 640px) {
+  .peta { left: 0; right: 0; bottom: 110px; width: 460px; margin-inline: auto; }
+}

@@ -66,3 +66,17 @@ document.addEventListener('click', async (e) => {
   }
   setTimeout(() => { button.textContent = label; }, 1500);
 });
+
+// Bilah navigasi menghilang setelah penonton diam (seperti mode slideshow
+// PowerPoint) supaya tidak menutupi slide; muncul lagi saat mouse bergerak
+// atau layar disentuh. Gaya .hud-idle ada di crootss/themes.
+const hud = document.querySelector('.hud');
+let idleTimer = 0;
+function wakeHud() {
+  hud.classList.remove('hud-idle');
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => hud.classList.add('hud-idle'), 2500);
+}
+document.addEventListener('pointermove', wakeHud, { passive: true });
+document.addEventListener('pointerdown', wakeHud, { passive: true });
+wakeHud();
