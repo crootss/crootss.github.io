@@ -44,7 +44,7 @@ Hal penting:
 - [Menjalankan di komputer](https://crootss.if.co.id/docs/lokal/): server lokal dengan satu perintah, `irm https://crootss.if.co.id/serve.ps1 | iex` (PowerShell) atau `python3 -m http.server 8080`
 - [README library crootss](https://raw.githubusercontent.com/crootss/crootss/main/README.md): instalasi, atribut, navigasi, API, kustomisasi CSS, menjalankan server lokal
 - [README tema crootss](https://raw.githubusercontent.com/crootss/themes/main/README.md): tema poster, gelap, minimal; daftar class (`slide`, `t-1`…`t-8`, `cover`, `split`, `center`, `cols`, `panel`, `card`, `window`, …); membuat tema baru
-- [Contoh deck lengkap (HTML halaman ini)](https://raw.githubusercontent.com/crootss/crootss.github.io/main/index.html): presentasi nyata dengan node bersarang, tema, dan HUD
+- [Contoh deck lengkap (HTML halaman ini)](https://raw.githubusercontent.com/crootss/crootss.github.io/main/index.html): presentasi nyata yang disusun sebagai concept map (pusat, cabang, detail; node `#peta` sebagai big picture), dengan node bersarang, tema, dan HUD
 
 ## Kode sumber
 

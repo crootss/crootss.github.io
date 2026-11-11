@@ -80,3 +80,62 @@
 @media (max-width: 640px) {
   .peta { left: 0; right: 0; bottom: 110px; width: 460px; margin-inline: auto; }
 }
+
+/* ---------- Peta: tampilan ---------- */
+/* Judul peta di pojok kiri atas, di ruang kosong antara Open source dan tepi */
+.croot-ready .peta-besar > h2 { position: absolute; left: 300px; top: 340px; margin: 0; max-width: 4000px; font-size: 300px; line-height: 1; }
+.croot-ready .peta-besar > .sub { position: absolute; left: 300px; top: 1000px; margin: 0; max-width: 3600px; font-size: 96px; line-height: 1.3; }
+.peta-garis { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.peta-jalan path { fill: none; stroke: currentColor; stroke-width: 14; stroke-linecap: round; stroke-dasharray: 1 42; opacity: .55; }
+.peta-label rect { fill: var(--th-panel); }
+.peta-label text { fill: var(--th-on-panel); font: 600 84px var(--th-text); text-anchor: middle; }
+.peta-hp .peta-label text { font-size: 56px; }
+/* Titik-titik mengalir dari pusat ke cabang saat peta utuh terlihat */
+@keyframes peta-arus { to { stroke-dashoffset: -86; } }
+.croot-overview .peta-jalan path, #peta.croot-active .peta-jalan path { animation: peta-arus 1.4s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .peta-jalan path { animation: none !important; } }
+.croot-viewport:not(.croot-ready) .peta-garis { display: none; }
+
+@media (max-width: 640px) {
+  .croot-ready .peta-besar > h2 { left: 220px; top: 260px; max-width: 2300px; font-size: 200px; }
+  .croot-ready .peta-besar > .sub { left: 220px; top: 980px; max-width: 2200px; font-size: 70px; }
+}
+/* Saat peta utuh tampil, semua blok terlihat jelas (tidak diredupkan) */
+.croot-ready:has(#peta.croot-active) .croot-node { opacity: 1; }
+/* ---------- Peta: posisi blok (dibuat oleh crootss-dev/tools/peta.py bersama garis di index.html) ----------
+   Concept map: crootss di tengah, enam cabang searah jarum jam, blok detail di
+   luar cabangnya. Desktop melingkar; ponsel elips tegak supaya peta utuhnya
+   pas di layar potret. #peta mencakup seluruh peta (langkah "big picture"). */
+#peta { --croot-y: 1150; --croot-z: -40; }
+.croot-ready #peta { width: 11000px; height: 9800px; }
+#mulai      { --croot-x: 0; --croot-y: 0; --croot-scale: 1.4; }
+#kenapa     { --croot-x: 0; --croot-y: -2800; }
+#pasang     { --croot-x: 2598; --croot-y: -1400; }
+#markup     { --croot-x: 2598; --croot-y: 1400; }
+#navigasi   { --croot-x: 0; --croot-y: 2800; }
+#tema-slide { --croot-x: -2598; --croot-y: 1400; }
+#opensource { --croot-x: -2598; --croot-y: -1400; }
+#jalankan   { --croot-x: 4677; --croot-y: -2500; --croot-scale: 0.8; }
+#atribut    { --croot-x: 4677; --croot-y: 2500; --croot-scale: 0.8; }
+#api        { --croot-x: 0; --croot-y: 5000; --croot-scale: 0.8; }
+#gaya       { --croot-x: -4677; --croot-y: 2500; --croot-scale: 0.8; }
+.peta-hp { display: none; }
+
+@media (max-width: 640px) {
+  #peta { --croot-y: 1150; }
+  .croot-ready #peta { width: 6400px; height: 11000px; }
+  #mulai      { --croot-x: 0; --croot-y: 0; --croot-scale: 1.4; }
+  #kenapa     { --croot-x: 0; --croot-y: -3300; }
+  #pasang     { --croot-x: 1472; --croot-y: -1650; }
+  #markup     { --croot-x: 1472; --croot-y: 1650; }
+  #navigasi   { --croot-x: 0; --croot-y: 3300; }
+  #tema-slide { --croot-x: -1472; --croot-y: 1650; }
+  #opensource { --croot-x: -1472; --croot-y: -1650; }
+  #jalankan   { --croot-x: 2598; --croot-y: -2950; --croot-scale: 0.8; }
+  #atribut    { --croot-x: 2598; --croot-y: 2950; --croot-scale: 0.8; }
+  #api        { --croot-x: 0; --croot-y: 5900; --croot-scale: 0.8; }
+  #gaya       { --croot-x: -2598; --croot-y: 2950; --croot-scale: 0.8; }
+  .peta-desktop { display: none; }
+  .peta-hp { display: block; }
+}
+/* ---------- akhir peta ---------- */
