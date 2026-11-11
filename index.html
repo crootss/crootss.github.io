@@ -35,7 +35,7 @@
     </section>
 
     <!-- 2. Kenapa (dengan zoom bersarang) -->
-    <section class="croot-node card wide kenapa" id="kenapa" data-croot-step="2" data-croot-x="1500" data-croot-y="0">
+    <section class="croot-node card wide nest" id="kenapa" data-croot-step="2" data-croot-x="1500" data-croot-y="0">
       <h2>Kenapa crootss?</h2>
       <p>Klik salah satu kotak, atau tekan <kbd>→</kbd> untuk menukik ke dalamnya.</p>
 
@@ -79,8 +79,69 @@
       <p>Itu saja. <code>croot.js</code> aktif otomatis.</p>
     </section>
 
-    <!-- 5. Atribut -->
-    <section class="croot-node card wide tile-red" id="atribut" data-croot-step="5" data-croot-x="1500" data-croot-y="1500" data-croot-scale="1.6">
+    <!-- 5. Jalankan di komputer sendiri -->
+    <section class="croot-node card wide nest tall" id="jalankan" data-croot-step="5" data-croot-x="4600" data-croot-y="1500">
+      <h2>Buka di komputermu</h2>
+      <p>Browser tidak memuat ES module dari <code>file://</code>. Jalankan server lokal di folder slide, lalu buka <code>http://localhost:8080/</code>.</p>
+
+      <div class="croot-node os os-win" id="windows" data-croot-step="5.1" data-croot-x="-199" data-croot-y="140" data-croot-scale="0.34">
+        <h2>Windows <small>PowerShell, tanpa instal apa pun</small></h2>
+        <p>Buka PowerShell di folder slide, tempel seluruh blok ini, lalu tekan Enter. Tutup jendelanya untuk berhenti.</p>
+        <p><button class="btn" data-copy="#kode-windows">Salin</button></p>
+<pre><code id="kode-windows">function start-server {
+  # Content-Type wajib: browser menolak ES module tanpa MIME type JavaScript.
+  $types = @{
+    '.html'='text/html; charset=utf-8'; '.css'='text/css; charset=utf-8'
+    '.js'='text/javascript; charset=utf-8'; '.mjs'='text/javascript; charset=utf-8'
+    '.json'='application/json'; '.svg'='image/svg+xml'; '.ico'='image/x-icon'
+    '.png'='image/png'; '.jpg'='image/jpeg'; '.jpeg'='image/jpeg'
+    '.gif'='image/gif'; '.webp'='image/webp'; '.woff2'='font/woff2'
+  }
+  $listener = [System.Net.HttpListener]::new()
+  $listener.Prefixes.Add("http://localhost:8080/")
+  $listener.Start()
+  Write-Host "Server jalan di http://localhost:8080/ (tutup jendela untuk berhenti)"
+  while ($listener.IsListening) {
+    $context = $listener.GetContext()
+    $response = $context.Response
+    $path = Join-Path $pwd.Path $context.Request.Url.LocalPath.TrimStart('/')
+    if (!(Test-Path $path) -or (Test-Path $path -PathType Container)) {
+      $path = Join-Path $path "index.html"
+    }
+    if (Test-Path $path -PathType Leaf) {
+      $type = $types[[System.IO.Path]::GetExtension($path).ToLower()]
+      if ($type) { $response.ContentType = $type }
+      $bytes = [System.IO.File]::ReadAllBytes($path)
+      $response.ContentLength64 = $bytes.Length
+      $response.OutputStream.Write($bytes, 0, $bytes.Length)
+    } else {
+      $response.StatusCode = 404
+    }
+    $response.Close()
+  }
+}
+start-server</code></pre>
+      </div>
+
+      <div class="croot-node os" id="macos" data-croot-step="5.2" data-croot-x="232" data-croot-y="-5" data-croot-scale="0.4">
+        <h2>macOS <small>Terminal</small></h2>
+        <p>Buka Terminal di folder slide (<code>cd</code> ke folder itu), lalu jalankan:</p>
+        <p><button class="btn" data-copy="#kode-macos">Salin</button></p>
+<pre><code id="kode-macos">python3 -m http.server 8080</code></pre>
+        <p>Jika macOS meminta instalasi <em>Command Line Tools</em>, setujui dulu, lalu jalankan ulang.</p>
+      </div>
+
+      <div class="croot-node os" id="linux" data-croot-step="5.3" data-croot-x="232" data-croot-y="238" data-croot-scale="0.4">
+        <h2>Linux <small>Terminal</small></h2>
+        <p>Python 3 sudah terpasang di hampir semua distro. Di folder slide, jalankan:</p>
+        <p><button class="btn" data-copy="#kode-linux">Salin</button></p>
+<pre><code id="kode-linux">python3 -m http.server 8080</code></pre>
+        <p>Tekan <kbd>Ctrl</kbd>+<kbd>C</kbd> untuk berhenti.</p>
+      </div>
+    </section>
+
+    <!-- 6. Atribut -->
+    <section class="croot-node card wide tile-red" id="atribut" data-croot-step="6" data-croot-x="1500" data-croot-y="1500" data-croot-scale="1.6">
       <h2>Atribut</h2>
       <table>
         <tr><td><code>data-croot-step</code></td><td>urutan: 1 → 2 → 2.1 → 2.10 → 3</td></tr>
@@ -91,8 +152,8 @@
       </table>
     </section>
 
-    <!-- 6. Navigasi -->
-    <section class="croot-node card" id="navigasi" data-croot-step="6" data-croot-x="0" data-croot-y="1800" data-croot-rx="-20">
+    <!-- 7. Navigasi -->
+    <section class="croot-node card" id="navigasi" data-croot-step="7" data-croot-x="0" data-croot-y="1800" data-croot-rx="-20">
       <h2>Tiga cara bergerak</h2>
       <ul>
         <li><strong>Linier</strong>: <kbd>←</kbd> <kbd>→</kbd> <kbd>Spasi</kbd> <kbd>PgUp/PgDn</kbd>, atau swipe.</li>
@@ -102,8 +163,8 @@
       <p>Setiap node punya alamat sendiri: <code>#/navigasi</code>.</p>
     </section>
 
-    <!-- 7. API -->
-    <section class="croot-node card" id="api" data-croot-step="7" data-croot-x="-1500" data-croot-y="1500">
+    <!-- 8. API -->
+    <section class="croot-node card" id="api" data-croot-step="8" data-croot-x="-1500" data-croot-y="1500">
       <h2>API JavaScript</h2>
 <pre><code>import { croot } from '…/croot.min.js';
 
@@ -115,8 +176,8 @@ deck.root.addEventListener('croot:enter',
   e =&gt; console.log(e.target.id));</code></pre>
     </section>
 
-    <!-- 8. Kustomisasi -->
-    <section class="croot-node card tile-yellow" id="gaya" data-croot-step="8" data-croot-x="-1500" data-croot-y="0" data-croot-rz="-8">
+    <!-- 9. Kustomisasi -->
+    <section class="croot-node card tile-yellow" id="gaya" data-croot-step="9" data-croot-x="-1500" data-croot-y="0" data-croot-rz="-8">
       <h2>Atur lewat CSS</h2>
 <pre><code>.croot-viewport {
   --croot-perspective: 1000px;
@@ -127,8 +188,8 @@ deck.root.addEventListener('croot:enter',
       <p><code>prefers-reduced-motion</code> dihormati otomatis.</p>
     </section>
 
-    <!-- 9. Open source -->
-    <section class="croot-node card tile-teal" id="opensource" data-croot-step="9" data-croot-x="-1500" data-croot-y="-1400">
+    <!-- 10. Open source -->
+    <section class="croot-node card tile-teal" id="opensource" data-croot-step="10" data-croot-x="-1500" data-croot-y="-1400">
       <h2>Open source</h2>
       <p>Lisensi di repositori. Issue, ide, dan pull request sangat diterima.</p>
       <p class="actions">
@@ -136,8 +197,8 @@ deck.root.addEventListener('croot:enter',
       </p>
     </section>
 
-    <!-- 10. Penutup -->
-    <section class="croot-node hero" id="selesai" data-croot-step="10" data-croot-x="0" data-croot-y="-1400" data-croot-z="300">
+    <!-- 11. Penutup -->
+    <section class="croot-node hero" id="selesai" data-croot-step="11" data-croot-x="0" data-croot-y="-1400" data-croot-z="300">
       <h2>Halaman ini adalah presentasi crootss.</h2>
       <p class="lead">Tekan <kbd>Esc</kbd> untuk melihat seluruh kanvasnya.</p>
       <p class="actions"><button class="btn" data-croot-target="#mulai">↺ Kembali ke awal</button></p>

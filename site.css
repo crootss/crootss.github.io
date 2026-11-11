@@ -25,12 +25,15 @@ body:not(.js) .hud { display: none; }
 
 .croot-viewport { --croot-node-width: 960px; }
 /* Node dengan anak bersarang tetap lebar penuh supaya anaknya muat */
-.croot-node.kenapa { --croot-node-width: 960px; }
+.croot-node.nest { --croot-node-width: 960px; }
+.croot-node.wide.tall { min-height: 900px; }
 .small-code pre { font-size: 17px; }
 
 @media (max-width: 640px) {
   .croot-viewport { --croot-node-width: 600px; }
-  .croot-node.kenapa { font-size: 44px; }
+  .croot-node.nest { font-size: 44px; }
+  /* Teks pengantar di atas anak-anaknya; ukuran normal supaya tidak menabrak. */
+  .croot-node.nest.tall { font-size: 32px; }
   .small-code pre { white-space: pre-wrap; word-break: break-all; }
   .croot-node table td { display: block; border: 0; padding: 0 0 .1em; }
   .croot-node table tr { display: block; padding: .35em 0; border-bottom: 2px solid rgba(0, 0, 0, .15); }
@@ -71,6 +74,21 @@ li { margin-bottom: .3em; }
   font-size: 46px;
 }
 .croot-node.mini h2 { font-size: 1.8em; }
+/* Panduan per OS (anak dari slide "Buka di komputermu") */
+.croot-node.os {
+  width: 900px;
+  padding: 48px 56px;
+  border-radius: 40px;
+  background: #242c42;
+  border: 3px solid var(--line);
+  font-size: 30px;
+}
+.croot-node.os-win { width: 1300px; }
+.croot-node.os h2 { font-size: 2em; }
+.croot-node.os h2 small { font-size: .45em; font-weight: 400; color: var(--muted); margin-left: .4em; }
+.croot-node.os pre { font-size: 22px; }
+.croot-node.os .btn { font-size: 24px; }
+body:not(.js) .croot-node.os { width: auto; font-size: 1em; margin: 1em 0; padding: 1em; }
 body:not(.js) .croot-node.mini { width: auto; min-height: 0; font-size: 1em; margin: 1em 0; padding: 1em; }
 
 .tile-red { background: var(--red) !important; color: #1a1a1a; border: 0 !important; }
