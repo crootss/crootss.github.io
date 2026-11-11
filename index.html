@@ -15,6 +15,9 @@
   <meta name="twitter:image" content="https://crootss.if.co.id/crootss.jpeg">
   <link rel="icon" href="favicon.ico">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,700&family=JetBrains+Mono:wght@400;700&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/crootss.min.css">
   <link rel="stylesheet" href="site.css">
 </head>
@@ -23,69 +26,88 @@
 <main class="croot-viewport" data-croot>
   <div class="croot-stage">
 
-    <!-- 1. Hero -->
-    <section class="croot-node hero" id="mulai" data-croot-step="1" aria-label="crootss">
-      <h1>croot<span class="accent">ss</span></h1>
+    <!-- 1. Sampul -->
+    <section class="croot-node slide t-tomato cover" id="mulai" data-croot-step="1" aria-label="crootss">
+      <p class="tag">Open source · ±9 KB · tanpa dependency</p>
+      <h1>croot<span>ss</span></h1>
       <p class="lead">Presentasi spatial 3D dengan CSS murni.</p>
       <p class="actions">
-        <button class="btn primary" data-croot-target="#kenapa">Mulai tur →</button>
-        <a class="btn" href="https://github.com/crootss/crootss">GitHub</a>
+        <button class="btn" data-croot-target="#kenapa">Mulai tur →</button>
+        <a class="btn ghost" href="https://github.com/crootss/crootss">GitHub</a>
       </p>
-      <p class="hint"><kbd>→</kbd> / <kbd>Spasi</kbd> lanjut · <kbd>Esc</kbd> overview · klik apa saja</p>
+      <p class="hint"><kbd>→</kbd> lanjut · <kbd>Esc</kbd> overview · atau klik slide mana saja</p>
     </section>
 
-    <!-- 2. Kenapa (dengan zoom bersarang) -->
-    <section class="croot-node card wide nest" id="kenapa" data-croot-step="2" data-croot-x="1500" data-croot-y="0">
-      <h2>Kenapa crootss?</h2>
-      <p>Klik salah satu kotak, atau tekan <kbd>→</kbd> untuk menukik ke dalamnya.</p>
+    <!-- 2. Kenapa (anak-anaknya bisa di-zoom; posisinya di site.css) -->
+    <section class="croot-node slide t-paper nest" id="kenapa" data-croot-step="2" data-croot-x="2000" data-croot-z="-700" data-croot-ry="-35">
+      <p class="eyebrow"><b>01</b> Kenapa</p>
+      <h2>Tiga alasan memakai crootss.</h2>
+      <p class="sub">Klik salah satu kartu, atau tekan <kbd>→</kbd> untuk menukik ke dalamnya.</p>
 
-      <div class="croot-node mini" id="ringan" data-croot-step="2.1" data-croot-x="-330" data-croot-y="130" data-croot-scale="0.3">
-        <h2><span class="accent">±9 KB</span></h2>
-        <p>CSS + JS minified, tanpa dependency. Tidak ada Canvas, WebGL, atau WebAssembly: hanya CSS 3D transforms bawaan browser.</p>
+      <div class="croot-node mini t-tomato" id="ringan" data-croot-step="2.1">
+        <p class="big">±9 KB</p>
+        <p>CSS + JS minified, tanpa dependency. Tanpa Canvas, WebGL, atau WebAssembly.</p>
       </div>
-      <div class="croot-node mini" id="seo" data-croot-step="2.2" data-croot-x="0" data-croot-y="130" data-croot-scale="0.3">
-        <h2><span class="yellow">HTML biasa</span></h2>
-        <p>Konten tetap teks di DOM: bisa diindeks mesin pencari, dibaca screen reader, dan tampil sebagai dokumen saat JS mati.</p>
+      <div class="croot-node mini t-cobalt" id="seo" data-croot-step="2.2">
+        <p class="big">HTML</p>
+        <p>Konten tetap teks di DOM: terindeks mesin pencari dan terbaca screen reader.</p>
       </div>
-      <div class="croot-node mini" id="tajam" data-croot-step="2.3" data-croot-x="330" data-croot-y="130" data-croot-scale="0.3">
-        <h2><span class="teal">Tetap tajam</span></h2>
-        <p>Teks di-raster ulang setelah kamera berhenti, jadi zoom sedalam apa pun tidak membuatnya buram. Seperti kotak ini.</p>
+      <div class="croot-node mini t-sun" id="tajam" data-croot-step="2.3">
+        <p class="big">Tajam</p>
+        <p>Teks di-raster ulang setelah kamera berhenti. Zoom sedalam apa pun tetap jelas.</p>
       </div>
     </section>
 
     <!-- 3. Pasang -->
-    <section class="croot-node card small-code" id="pasang" data-croot-step="3" data-croot-x="3000" data-croot-y="0" data-croot-rz="90">
-      <h2>Pasang</h2>
-      <p>Dua baris dari CDN. Tanpa npm, tanpa build.</p>
+    <section class="croot-node slide t-cobalt split" id="pasang" data-croot-step="3" data-croot-x="3800" data-croot-y="1800" data-croot-z="-1900" data-croot-ry="-60">
+      <div>
+        <p class="eyebrow"><b>02</b> Pasang</p>
+        <h2>Dua baris dari CDN.</h2>
+        <p class="sub">Tanpa npm, tanpa build. Tempel di <code>&lt;head&gt;</code>, selesai.</p>
+      </div>
+      <div class="paper">
+        <span class="sticker">Tanpa build!</span>
 <pre><code>&lt;link rel="stylesheet" href=
- "https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/crootss.min.css"&gt;
+ "https://cdn.jsdelivr.net/gh/
+ crootss/crootss@v0.3.0/crootss.min.css"&gt;
+
 &lt;script type="module" src=
- "https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js"&gt;
+ "https://cdn.jsdelivr.net/gh/
+ crootss/crootss@v0.3.0/croot.min.js"&gt;
 &lt;/script&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 4. Markup -->
-    <section class="croot-node card" id="markup" data-croot-step="4" data-croot-x="3000" data-croot-y="1500" data-croot-z="-800" data-croot-ry="-30">
-      <h2>Tulis di HTML</h2>
+    <section class="croot-node slide t-sun split" id="markup" data-croot-step="4" data-croot-x="3200" data-croot-y="3700" data-croot-z="-3300" data-croot-rx="12" data-croot-ry="-20">
+      <div>
+        <p class="eyebrow"><b>03</b> Tulis</p>
+        <h2>Slide adalah HTML biasa.</h2>
+        <p class="sub">Atur posisi dan rotasi lewat atribut. <code>croot.js</code> aktif otomatis.</p>
+      </div>
+      <div class="panel">
 <pre><code>&lt;div class="croot-viewport" <b>data-croot</b>&gt;
   &lt;div class="croot-stage"&gt;
     &lt;section class="croot-node"
       <b>data-croot-step</b>="1"
-      <b>data-croot-x</b>="1500" <b>data-croot-rz</b>="90"&gt;
+      <b>data-croot-x</b>="1500"
+      <b>data-croot-ry</b>="-35"&gt;
       &lt;h2&gt;Halo&lt;/h2&gt;
     &lt;/section&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-      <p>Itu saja. <code>croot.js</code> aktif otomatis.</p>
+      </div>
     </section>
 
-    <!-- 5. Jalankan di komputer sendiri -->
-    <section class="croot-node card wide nest tall" id="jalankan" data-croot-step="5" data-croot-x="4600" data-croot-y="1500">
-      <h2>Buka di komputermu</h2>
-      <p>Browser tidak memuat ES module dari <code>file://</code>. Jalankan server lokal di folder slide, lalu buka <code>http://localhost:8080/</code>.</p>
+    <!-- 5. Jalankan di komputer sendiri (posisi anak di site.css) -->
+    <section class="croot-node slide t-mint nest tall" id="jalankan" data-croot-step="5" data-croot-x="1000" data-croot-y="5000" data-croot-z="-3800" data-croot-ry="10">
+      <p class="eyebrow"><b>04</b> Coba</p>
+      <h2>Buka di komputermu.</h2>
+      <p class="sub">Browser tidak memuat ES module dari <code>file://</code>. Jalankan server lokal di folder slide, lalu buka <code>http://localhost:8080/</code>.</p>
 
-      <div class="croot-node os os-win" id="windows" data-croot-step="5.1" data-croot-x="-199" data-croot-y="140" data-croot-scale="0.34">
-        <h2>Windows <small>PowerShell, tanpa instal apa pun</small></h2>
+      <div class="croot-node os os-win" id="windows" data-croot-step="5.1">
+        <p class="chrome" aria-hidden="true"><i></i><i></i><i></i></p>
+        <h3>Windows <small>PowerShell, tanpa instal apa pun</small></h3>
         <p>Buka PowerShell di folder slide, tempel seluruh blok ini, lalu tekan Enter. Tutup jendelanya untuk berhenti.</p>
         <p><button class="btn" data-copy="#kode-windows">Salin</button></p>
 <pre><code id="kode-windows">function start-server {
@@ -123,16 +145,18 @@
 start-server</code></pre>
       </div>
 
-      <div class="croot-node os" id="macos" data-croot-step="5.2" data-croot-x="232" data-croot-y="-5" data-croot-scale="0.4">
-        <h2>macOS <small>Terminal</small></h2>
+      <div class="croot-node os" id="macos" data-croot-step="5.2">
+        <p class="chrome" aria-hidden="true"><i></i><i></i><i></i></p>
+        <h3>macOS <small>Terminal</small></h3>
         <p>Buka Terminal di folder slide (<code>cd</code> ke folder itu), lalu jalankan:</p>
         <p><button class="btn" data-copy="#kode-macos">Salin</button></p>
 <pre><code id="kode-macos">python3 -m http.server 8080</code></pre>
         <p>Jika macOS meminta instalasi <em>Command Line Tools</em>, setujui dulu, lalu jalankan ulang.</p>
       </div>
 
-      <div class="croot-node os" id="linux" data-croot-step="5.3" data-croot-x="232" data-croot-y="238" data-croot-scale="0.4">
-        <h2>Linux <small>Terminal</small></h2>
+      <div class="croot-node os" id="linux" data-croot-step="5.3">
+        <p class="chrome" aria-hidden="true"><i></i><i></i><i></i></p>
+        <h3>Linux <small>Terminal</small></h3>
         <p>Python 3 sudah terpasang di hampir semua distro. Di folder slide, jalankan:</p>
         <p><button class="btn" data-copy="#kode-linux">Salin</button></p>
 <pre><code id="kode-linux">python3 -m http.server 8080</code></pre>
@@ -141,67 +165,81 @@ start-server</code></pre>
     </section>
 
     <!-- 6. Atribut -->
-    <section class="croot-node card wide tile-red" id="atribut" data-croot-step="6" data-croot-x="1500" data-croot-y="1500" data-croot-scale="1.6">
-      <h2>Atribut</h2>
+    <section class="croot-node slide t-ink" id="atribut" data-croot-step="6" data-croot-x="-1000" data-croot-y="3900" data-croot-z="-2900" data-croot-ry="40" data-croot-rz="-3">
+      <p class="eyebrow"><b>05</b> Atribut</p>
+      <h2>Semua lewat <span class="hl">data-croot-*</span></h2>
       <table>
-        <tr><td><code>data-croot-step</code></td><td>urutan: 1 → 2 → 2.1 → 2.10 → 3</td></tr>
-        <tr><td><code>data-croot-x / y / z</code></td><td>posisi (px)</td></tr>
-        <tr><td><code>data-croot-rx / ry / rz</code></td><td>rotasi (derajat)</td></tr>
-        <tr><td><code>data-croot-scale</code></td><td>skala; kamera menyesuaikan</td></tr>
-        <tr><td><code>data-croot-target</code></td><td>klik → kamera ke selector lain</td></tr>
+        <tr><td><code>step</code></td><td>Urutan: 1 → 2 → 2.1 → 2.10 → 3</td></tr>
+        <tr><td><code>x · y · z</code></td><td>Posisi dalam piksel</td></tr>
+        <tr><td><code>rx · ry · rz</code></td><td>Rotasi dalam derajat</td></tr>
+        <tr><td><code>scale</code></td><td>Skala node; kamera menyesuaikan</td></tr>
+        <tr><td><code>target</code></td><td>Klik → kamera terbang ke selector lain</td></tr>
       </table>
     </section>
 
     <!-- 7. Navigasi -->
-    <section class="croot-node card" id="navigasi" data-croot-step="7" data-croot-x="0" data-croot-y="1800" data-croot-rx="-20">
-      <h2>Tiga cara bergerak</h2>
-      <ul>
-        <li><strong>Linier</strong>: <kbd>←</kbd> <kbd>→</kbd> <kbd>Spasi</kbd> <kbd>PgUp/PgDn</kbd>, atau swipe.</li>
-        <li><strong>Klik langsung</strong>: klik node mana pun; urutan ikut tersinkron.</li>
-        <li><strong>Overview</strong>: <kbd>Esc</kbd> menampilkan seluruh kanvas.</li>
-      </ul>
-      <p>Setiap node punya alamat sendiri: <code>#/navigasi</code>.</p>
+    <section class="croot-node slide t-pink" id="navigasi" data-croot-step="7" data-croot-x="-2700" data-croot-y="2000" data-croot-z="-1700" data-croot-rx="-10" data-croot-ry="55">
+      <p class="eyebrow"><b>06</b> Navigasi</p>
+      <h2>Tiga cara bergerak.</h2>
+      <div class="keys">
+        <div><span class="key">→</span><p><b>Linier</b><br>Panah, Spasi, PgUp/PgDn, atau swipe.</p></div>
+        <div><span class="key">Klik</span><p><b>Langsung</b><br>Klik slide mana pun; urutan ikut menyesuaikan.</p></div>
+        <div><span class="key">Esc</span><p><b>Overview</b><br>Lihat seluruh ruang. Tiap slide punya URL sendiri.</p></div>
+      </div>
     </section>
 
     <!-- 8. API -->
-    <section class="croot-node card" id="api" data-croot-step="8" data-croot-x="-1500" data-croot-y="1500">
-      <h2>API JavaScript</h2>
-<pre><code>import { croot } from '…/croot.min.js';
+    <section class="croot-node slide t-paper split" id="api" data-croot-step="8" data-croot-x="-3000" data-croot-z="-500" data-croot-ry="35">
+      <div>
+        <p class="eyebrow"><b>07</b> API</p>
+        <h2>Kendalikan dari JavaScript.</h2>
+        <p class="sub">ES module murni, plus event <code>croot:enter</code>, <code>croot:leave</code>, dan <code>croot:overview</code>.</p>
+      </div>
+      <div class="panel">
+<pre><code>import { croot } from
+  '…/croot.min.js';
 
 const deck = croot('#deck');
 deck.next(); deck.prev();
-deck.goto('api'); deck.overview();
+deck.goto('api');
+deck.overview();
 
-deck.root.addEventListener('croot:enter',
+deck.root.addEventListener(
+  'croot:enter',
   e =&gt; console.log(e.target.id));</code></pre>
+      </div>
     </section>
 
     <!-- 9. Kustomisasi -->
-    <section class="croot-node card tile-yellow" id="gaya" data-croot-step="9" data-croot-x="-1500" data-croot-y="0" data-croot-rz="-8">
-      <h2>Atur lewat CSS</h2>
+    <section class="croot-node slide t-lilac split" id="gaya" data-croot-step="9" data-croot-x="-1900" data-croot-y="-1900" data-croot-z="100" data-croot-rx="18" data-croot-ry="20">
+      <div>
+        <p class="eyebrow"><b>08</b> Gaya</p>
+        <h2>Atur lewat CSS.</h2>
+        <p class="sub">Kecepatan, perspektif, dan lebar slide cukup diubah dengan custom property. <code>prefers-reduced-motion</code> dihormati otomatis.</p>
+      </div>
+      <div class="panel">
 <pre><code>.croot-viewport {
   --croot-perspective: 1000px;
   --croot-speed: 1s;
   --croot-node-width: 960px;
   --croot-dim: .35;
 }</code></pre>
-      <p><code>prefers-reduced-motion</code> dihormati otomatis.</p>
+      </div>
     </section>
 
     <!-- 10. Open source -->
-    <section class="croot-node card tile-teal" id="opensource" data-croot-step="10" data-croot-x="-1500" data-croot-y="-1400">
-      <h2>Open source</h2>
-      <p>Lisensi di repositori. Issue, ide, dan pull request sangat diterima.</p>
-      <p class="actions">
-        <a class="btn dark" href="https://github.com/crootss/crootss">github.com/crootss/crootss</a>
-      </p>
+    <section class="croot-node slide t-sun license" id="opensource" data-croot-step="10" data-croot-x="300" data-croot-y="-2000" data-croot-z="-1000" data-croot-rx="25">
+      <p class="eyebrow"><b>09</b> Open source</p>
+      <p class="mega">GPL-3.0</p>
+      <h2>Bebas dipakai, dipelajari, dan dikembangkan.</h2>
+      <p class="actions"><a class="btn" href="https://github.com/crootss/crootss">github.com/crootss/crootss</a></p>
     </section>
 
-    <!-- 11. Penutup -->
-    <section class="croot-node hero" id="selesai" data-croot-step="11" data-croot-x="0" data-croot-y="-1400" data-croot-z="300">
-      <h2>Halaman ini adalah presentasi crootss.</h2>
-      <p class="lead">Tekan <kbd>Esc</kbd> untuk melihat seluruh kanvasnya.</p>
-      <p class="actions"><button class="btn" data-croot-target="#mulai">↺ Kembali ke awal</button></p>
+    <!-- 11. Penutup: jauh di belakang, supaya kamera terbang menembus ruang -->
+    <section class="croot-node slide t-ink finale" id="selesai" data-croot-step="11" data-croot-y="1500" data-croot-z="-12000" data-croot-scale="3">
+      <h2>Halaman ini adalah <span class="hl">presentasi crootss.</span></h2>
+      <p class="sub">Tekan <kbd>Esc</kbd> untuk melihat seluruh ruangnya.</p>
+      <p class="actions"><button class="btn light" data-croot-target="#mulai">↺ Kembali ke awal</button></p>
     </section>
 
   </div>
@@ -209,9 +247,9 @@ deck.root.addEventListener('croot:enter',
 
 <nav class="hud" aria-label="Navigasi presentasi">
   <button class="hud-btn" data-act="prev" aria-label="Sebelumnya">←</button>
-  <button class="hud-btn" data-act="overview">Overview</button>
-  <button class="hud-btn" data-act="next" aria-label="Berikutnya">→</button>
   <span class="hud-pos" aria-hidden="true"></span>
+  <button class="hud-btn" data-act="next" aria-label="Berikutnya">→</button>
+  <button class="hud-btn" data-act="overview">Overview</button>
 </nav>
 
 <script type="module" src="main.js"></script>
