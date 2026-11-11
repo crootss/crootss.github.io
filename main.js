@@ -1,4 +1,4 @@
-import { croot } from 'https://cdn.jsdelivr.net/gh/crootss/crootss@v0.2.0/croot.min.js';
+import { croot } from 'https://cdn.jsdelivr.net/gh/crootss/crootss@v0.3.0/croot.min.js';
 
 const deck = croot('[data-croot]');
 const pos = document.querySelector('.hud-pos');
