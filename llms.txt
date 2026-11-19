@@ -32,7 +32,8 @@ Hal penting:
 - Node bersarang memakai koordinat relatif ke pusat induknya. Posisi juga bisa ditulis sebagai custom property CSS (`--croot-x`, dst.).
 - API: `import { croot } from '…/croot.min.js'`; `const deck = croot('#deck')`; `deck.next()`, `deck.prev()`, `deck.goto(id|index)`, `deck.overview()`, `deck.destroy()`. Event: `croot:enter`, `croot:leave`, `croot:overview`. URL setiap node: `#/<id>`.
 - Konvensi presentasi: mulai dari **big picture**. Satu node berisi diagram seluruh presentasi (concept map, system context, rich picture, Business Model Canvas `.bmc`, alur `.flow`, timeline `.timeline`) didaftarkan dengan `data-croot-overview="#id"` pada root; tampilkan di awal, lalu zoom ke tiap blok dan detailnya. `Esc` dan langkah setelah yang terakhir kembali ke big picture. Blok satu bidang dengan big picture.
-- Diagram dan animasi dari tema, murni CSS: SVG `.dg` dengan `.dg-edge` (`dotted`/`dashed`), `.dg-box`, `.dg-label`; animasi `.a-draw` (path `pathLength="1"`), `.a-flow`, `.a-in`, `.a-float`, `.a-spin`, `.a-pulse`, `.a-blink` yang hanya berjalan di node aktif.
+- Diagram dan animasi dari tema, murni CSS: SVG `.dg` dengan `.dg-edge` (`dotted`/`dashed`), `.dg-box`, `.dg-label`; animasi `.a-draw` (path `pathLength="1"`), `.a-flow`, `.a-in`, `.a-float`, `.a-spin`, `.a-pulse`, `.a-blink` yang hanya berjalan di node aktif. Alur ke bawah: `.flow.vertical`.
+- Komponen tema lain: `table.matrix` (tabel banyak kolom tetap grid di ponsel), `.card.figure`/`.window.figure` (judul kecil, gambar mengisi kartu), `.byline` dan `.hint` di sampul (penulis/afiliasi dan petunjuk navigasi, ikut alur teks).
 - Konvensi kode: vanilla ES module tanpa build; HTML, CSS, dan JS di file terpisah (konvensi CrootJS).
 
 ## Dokumentasi
