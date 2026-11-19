@@ -1,0 +1,17 @@
+{
+  "html": "index.html",
+  "css": "site.css",
+  "peta": "peta",
+  "pusat": "mulai",
+  "cabang": [
+    {"id": "kenapa", "label": "dipilih karena"},
+    {"id": "pasang", "label": "dipasang lewat", "detail": [{"id": "jalankan", "label": "dibuka di"}]},
+    {"id": "markup", "label": "ditulis dengan", "detail": [{"id": "atribut", "label": "diatur oleh"}]},
+    {"id": "navigasi", "label": "dijelajahi dengan", "detail": [{"id": "api", "label": "dikendalikan lewat"}]},
+    {"id": "tema-slide", "label": "ditata oleh", "detail": [{"id": "gaya", "label": "diubah lewat"}]},
+    {"id": "opensource", "label": "dibagikan sebagai"}
+  ],
+  "ukuran": {"kenapa": {"ponsel": [720, 1500]}},
+  "desktop": {"peta": [11000, 9800, 1150]},
+  "ponsel": {"peta": [6400, 11000, 1150]}
+}
